@@ -1,0 +1,72 @@
+.anchorviz .ring {
+    stroke: var(--ringColor, grey);
+    fill: #222222;
+}
+
+.anchorviz .click-overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.anchorviz .ring-focus-indicator circle {
+    stroke: var(--focusStroke, red);
+    fill: none;
+}
+
+.anchorviz .ring-focus-indicator-action-possible circle {
+    stroke: var(--focusStrokeActionPossible, #44DDFF) !important;
+}
+
+.anchorviz .ring-focus-indicator-anchor-hover circle {
+    stroke: var(--focusStrokeAnchorHover, #FFDD44) !important;
+}
+
+.anchorviz .ring-focus-indicator-active circle {
+    stroke: var(--anchorDraggingColor, #99FFAA) !important;
+}
+
+.anchorviz .anchor {
+    pointer-events: all;
+    fill: var(--defaultAnchorColor, grey);
+}
+
+.anchorviz .anchor-selected {
+    fill: var(--selectedAnchorColor, #99AAFF) !important;
+}
+.anchorviz .anchor-dragging {
+    fill: var(--anchorDraggingColor, #99FFAA) !important;
+}
+
+.anchorviz .anchor-label {
+    fill: var(--textColor, white);
+    font-size: 12px;
+    font-family: arial;
+}
+
+.anchorviz .labeled-point {
+    stroke: var(--labeledPointColor, #FFFFFF) !important;
+    stroke-width: 1px;
+}
+.anchorviz .lassoed-point {
+    stroke: var(--lassoedPointColor, #22AA22) !important;
+    stroke-width: 1px;
+}
+.anchorviz .selected-point {
+    stroke: var(--selectedPointColor, #FF0000) !important;
+}
+.anchorviz .within-current-lasso-selection {
+    stroke: var(--lassoingColor, green) !important;
+    stroke-width: 2px;
+}
+
+.anchorviz .lasso path {
+    stroke: rgb(80, 80, 80);
+    stroke-width: 2px;
+}
+.anchorviz .lasso .drawn {
+    fill-opacity: 0.05;
+}
+.anchorivz .lasso .loop_close {
+    fill: none;
+    stroke-dasharray: 4, 4;
+}

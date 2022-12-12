@@ -1,0 +1,19 @@
+name: anchorviz
+channels:
+- conda-forge
+dependencies:
+- ipydrawio
+- python
+- cookiecutter
+- python-language-server
+- dask_labextension
+- jupyter
+- yarn
+- jupyterlab_vim
+- jupyterlab-lsp
+- black
+- nodejs
+- ipycytoscape
+- isort
+- jupyterlab_code_formatter
+- jupyterlab

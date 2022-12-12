@@ -1,0 +1,15 @@
+*.egg-info/
+.ipynb_checkpoints/
+dist/
+build/
+*.py[cod]
+node_modules/
+
+**/__pycache__/*
+
+# Compiled javascript
+ipyanchorviz/nbextension/
+ipyanchorviz/labextension/
+
+# OS X
+.DS_Store
