@@ -488,8 +488,8 @@ let create = function (that) {
 
     // compute noise
     let mag = that.model.get("noiseMagnitude");
-    let x = Math.random() * mag;
-    let y = Math.random() * mag;
+    let x = Math.random() * mag - (mag / 2);
+    let y = Math.random() * mag - (mag / 2);
 
     that.noise[d.id] = [x, y];
     return [x, y];
