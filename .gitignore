@@ -13,3 +13,5 @@ ipyanchorviz/labextension/
 
 # OS X
 .DS_Store
+
+.virtual_documents
