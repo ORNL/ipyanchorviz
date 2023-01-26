@@ -1,3 +1,16 @@
+# Publishing Checklist
+
+1. Run through the notebook `testing/ipav_tests.ipynb` and make sure everything looks okay
+2. Update version in `ipyanchorviz/__init__.py`
+3. Update versions in `js/lib/widget.js`
+4. Update versions in `ipyanchorviz/anchorviz.py`
+4. Update changelog (`CHANGELOG.md`)
+5. Commit
+6. Push to github
+7. Publish to pypi `scripts/build`
+8. Tag release on github
+
+<!--
 # Release
 
 Before doing a release, check to see if there are any outstanding changes or untracked files:
@@ -51,3 +64,5 @@ To release a new version of ipyanchorviz on PyPI, first make sure that the `buil
    git push
    git push --tags
    ```
+
+-->
