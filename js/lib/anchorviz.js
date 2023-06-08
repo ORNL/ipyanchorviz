@@ -1,9 +1,8 @@
-let d3 = require('d3');
-let d3Lasso = require("d3-lasso");
-const _ = require('lodash');
-
-let math = require("./math.js");
-let utils = require("./utils.js");
+import * as d3 from "d3";
+import * as d3Lasso from "d3-lasso";
+import * as _ from "lodash";
+import * as math from "./math.js";
+import * as utils from "./utils.js";
 
 require('./style.css')
 
@@ -24,13 +23,13 @@ function setAnchors(that, anchors) {
 }
 
 // Called from py-js bridge.
-let updateSelectedDataPointID = function (that) {
+export function updateSelectedDataPointID(that) {
   that.svg.selectAll(".datapoint")
     .classed("selected-point", (d) => d.id === that.model.get("selectedDataPointID"))
 }
 
 // Called from py-js bridge.
-let updateSelectedAnchorID = function (that) {
+export function updateSelectedAnchorID(that) {
   that.svg.selectAll(".anchor")
     .classed("anchor-selected", false)
   that.svg.select("#anchor-" + that.model.get("selectedAnchorID").toString())
@@ -38,13 +37,13 @@ let updateSelectedAnchorID = function (that) {
 }
 
 /** Data update called from the py-js bridge. */
-let updateData = function (that) {
+export function updateData(that) {
   that.enterDatapoints();
   that.animateDatapoints();
 }
 
 /** Anchors update called from the py-js bridge. */
-let updateAnchors = function (that) {
+export function updateAnchors(that) {
   let anchorsPrev = that.model.previous("anchors");
   let anchors = getModifiableAnchors(that);
 
@@ -74,14 +73,14 @@ let updateAnchors = function (that) {
 };
 
 // Called from py-js bridge
-let updateLassoedPoints = function (that) {
+export function updateLassoedPoints(that) {
   let lassoedIDs = that.model.get("lassoedPointIDs");
   that.svg.selectAll(".datapoint")
     .classed("lassoed-point", (d) => (lassoedIDs.includes(d.id)))
 }
 
 /** Initialize the d3 viz. */
-let create = function (that) {
+export function create(that) {
 
   // ==================================================
   // ATTRIBUTES
@@ -593,11 +592,11 @@ let create = function (that) {
 
 
 
-module.exports = {
-  create,
-  updateAnchors,
-  updateLassoedPoints,
-  updateSelectedDataPointID,
-  updateSelectedAnchorID,
-  updateData
-}
+// module.exports = {
+//   create,
+//   updateAnchors,
+//   updateLassoedPoints,
+//   updateSelectedDataPointID,
+//   updateSelectedAnchorID,
+//   updateData
+// }

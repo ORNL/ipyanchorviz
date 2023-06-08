@@ -1,15 +1,17 @@
-var plugin = require('./index');
-var base = require('@jupyter-widgets/base');
+import {AnchorVizModel, AnchorVizView, version} from './index';
+import {IJupyterWidgetRegistry} from '@jupyter-widgets/base';
 
-module.exports = {
+export const helloWidgetPlugin = {
   id: 'ipyanchorviz:plugin',
-  requires: [base.IJupyterWidgetRegistry],
+  requires: [IJupyterWidgetRegistry],
   activate: function(app, widgets) {
       widgets.registerWidget({
           name: 'ipyanchorviz',
-          version: plugin.version,
-          exports: plugin
+          version: version,
+          exports: { AnchorVizModel, AnchorVizView }
       });
   },
   autoStart: true
 };
+
+export default helloWidgetPlugin;

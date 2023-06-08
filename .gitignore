@@ -15,3 +15,6 @@ ipyanchorviz/labextension/
 .DS_Store
 
 .virtual_documents
+
+js/.yarn/*
+js/.yarnrc.yml
