@@ -161,6 +161,26 @@ class AnchorViz(widgets.DOMWidget):
                 self.modify_anchor(index, key, new_value)
                 break
 
+    def remove_anchor(self, array_index: int):
+        """Remove the anchor at the given index in the anchors array.
+
+        Args:
+            array_index (int): The index of the anchor in the ``anchors`` list.
+        """
+        del self.anchors[array_index]
+        self.notify_change({"name": "anchors", "type": "change"})
+
+    def remove_anchor_by_id(self, id: int):
+        """Remove the anchor with the given ID key.
+
+        Args:
+            id (int): the 'id' field of the anchor in the ``anchors`` list.
+        """
+        for index, anchor in enumerate(self.anchors):
+            if anchor["id"] == id:
+                self.remove_anchor(index)
+                break
+
     def set_anchors(self, anchors_data: typing.List[dict[str, Any]]):
         """Replace the full list of anchors with the given list."""
         self.anchors = anchors_data

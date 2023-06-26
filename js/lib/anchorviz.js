@@ -63,12 +63,19 @@ export function updateAnchors(that) {
   }
 
   // check for deleted anchors
+  let deletedAnchorFound = false;
   for (let anchor of anchorsPrev) {
     if (!utils.anchorInList(anchor, anchors)) {
+      deletedAnchorFound = true;
       console.log("Removing " + anchor.id.toString());
       that.svg.select("#anchor-" + anchor.id.toString()).remove();
       that.svg.select("#anchor-text-" + anchor.id.toString()).remove();
     }
+  }
+  if (deletedAnchorFound) {
+    console.log("updating data")
+    that.localAnchors = anchors;
+    updateData(that);
   }
 };
 

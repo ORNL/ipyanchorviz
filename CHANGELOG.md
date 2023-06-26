@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Support for ipywidgets>=8
+* Support for ipywidgets>=8.
+* Python function to delete specified anchor.
 
 
 
