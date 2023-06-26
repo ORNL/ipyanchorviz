@@ -72,11 +72,18 @@ export function updateAnchors(that) {
       that.svg.select("#anchor-text-" + anchor.id.toString()).remove();
     }
   }
+  that.localAnchors = anchors;
   if (deletedAnchorFound) {
     console.log("updating data")
-    that.localAnchors = anchors;
+    //that.localAnchors = anchors;
     updateData(that);
   }
+  else {
+    //that.localAnchors = anchors;
+    that.updateDataPointPositionsImmediate();
+  }
+  //that.localAnchors = anchors;
+  //updateData(that);
 };
 
 // Called from py-js bridge

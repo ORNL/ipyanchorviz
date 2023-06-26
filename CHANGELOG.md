@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Python function to delete specified anchor.
 
 
+### Fixed
+
+* Point locations not updating on anchor theta programmatically modified.
+
+
 
 
 ## [0.1.0] - 2022-01-26
