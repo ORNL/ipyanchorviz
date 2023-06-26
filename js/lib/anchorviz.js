@@ -108,7 +108,8 @@ export function create(that) {
 
   // Keep track of an anchor's theta before starting to drag,
   // if it's not actually moved, don't raise an event.
-  let draggingAnchorPrevTheta;
+  // let draggingAnchorPrevTheta;
+  that.draggingAnchorPrevTheta = 0.0;
 
 
   let init = function () {
@@ -277,7 +278,7 @@ export function create(that) {
         theta: theta,
         name: "New Anchor"
       };
-      anchors = [...oldAnchors, newAnchor];
+      let anchors = [...oldAnchors, newAnchor];
       //console.log("Adding from overlay click " + newAnchor.id);
       //that.addVizAnchor(newAnchor); // we don't need this because the below
       //setAnchors call takes care of it
@@ -355,15 +356,15 @@ export function create(that) {
   // ---- DRAG HANDLING -------------------------------
 
   let anchorDragStart = function (anchor) {
-    anchorDragging = true;
-    draggingAnchorPrevTheta = anchor.theta;
+    that.anchorDragging = true;
+    that.draggingAnchorPrevTheta = anchor.theta;
 
     that.svg.select("#anchor-" + anchor.id.toString())
       .classed("anchor-dragging", true)
     focusIndicator.classed("ring-focus-indicator-active", true)
   }
   let anchorDragEnd = function (anchor) {
-    anchorDragging = false;
+    that.anchorDragging = false;
 
     let anchors = getModifiableAnchors(that);
     utils.anchorByIndex(anchor.id, anchors).theta = anchor.theta
@@ -373,7 +374,7 @@ export function create(that) {
     focusIndicator.classed("ring-focus-indicator-active", false)
 
     // we only dispatch if theta has actually changed.
-    if (anchor.theta !== draggingAnchorPrevTheta) {
+    if (anchor.theta !== that.draggingAnchorPrevTheta) {
       setAnchors(that, anchors);
       that.model.send({ "type": "anchor_drag", "theta": anchor.theta, "id": anchor.id });
     }
