@@ -1,9 +1,10 @@
 # Publishing Checklist
 
 1. Run through the notebook `testing/ipav_tests.ipynb` and make sure everything looks okay
-2. Update version in `ipyanchorviz/__init__.py`
+2. Update version in `ipyanchorviz/_version.py`
 3. Update versions in `js/lib/widget.js`
 4. Update versions in `ipyanchorviz/anchorviz.py`
+5. Update versions in `js/package.json`
 4. Update changelog (`CHANGELOG.md`)
 5. Commit
 6. Push to github
