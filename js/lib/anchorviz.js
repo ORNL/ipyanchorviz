@@ -188,65 +188,69 @@ export function create(that) {
     // if user has requested to always normalize
     let retriggerNorm = that.model.get("autoNorm");
 
-    function visible(anchor) {
-      if (anchor.visible === undefined) {
-        return true;
-      }
-      return anchor.visible;
-    }
+    if (point.weights !== undefined)
+    {
 
-    for (let anchor of anchors) {
-      if (!visible(anchor)) {
-        // if an anchor that's influencing a point isn't being shown,
-        // then the weight associated with it is "unused" and therefore
-        // the point is not correctly being shown as normalized. We
-        // must recompute the weights to acccount for renormalization.
-        if (point.weights[anchor.id] > 0) {
-          retriggerNorm = true;
-          break;
-        } else {
-          continue;
+      function visible(anchor) {
+        if (anchor.visible === undefined) {
+          return true;
         }
+        return anchor.visible;
       }
-      if (anchor.id in point.weights) {
-        let value = point.weights[anchor.id];
-        let [vX, vY] = math.polarToRect(that, maxPointRadius, anchor.theta, false);
-        x += vX * value;
-        y += vY * value;
-      }
-    }
-
-    // redistribute normalized weights among visible anchors, adjusting
-    // resulting x/y
-    if (retriggerNorm) {
-      x = 0.0;
-      y = 0.0;
-
-      // figure out the total "distance" to normalize by
-      let sum = 0.0;
 
       for (let anchor of anchors) {
-        if (visible(anchor) && anchor.id in point.weights) {
-          sum += point.weights[anchor.id];
+        if (!visible(anchor)) {
+          // if an anchor that's influencing a point isn't being shown,
+          // then the weight associated with it is "unused" and therefore
+          // the point is not correctly being shown as normalized. We
+          // must recompute the weights to acccount for renormalization.
+          if (point.weights[anchor.id] > 0) {
+            retriggerNorm = true;
+            break;
+          } else {
+            continue;
+          }
+        }
+        if (anchor.id in point.weights) {
+          let value = point.weights[anchor.id];
+          let [vX, vY] = math.polarToRect(that, maxPointRadius, anchor.theta, false);
+          x += vX * value;
+          y += vY * value;
         }
       }
 
-      // apply the norm per-anchor and re-adjust the result x/y
-      if (sum > 0.0) {
+      // redistribute normalized weights among visible anchors, adjusting
+      // resulting x/y
+      if (retriggerNorm) {
+        x = 0.0;
+        y = 0.0;
+
+        // figure out the total "distance" to normalize by
+        let sum = 0.0;
+
         for (let anchor of anchors) {
-          if (!visible(anchor)) {
-            continue;
+          if (visible(anchor) && anchor.id in point.weights) {
+            sum += point.weights[anchor.id];
           }
-          if (anchor.id in point.weights) {
-            let value = point.weights[anchor.id] / sum; // renorm here
-            let [vX, vY] = math.polarToRect(
-              that,
-              maxPointRadius,
-              anchor.theta,
-              false
-            );
-            x += vX * value;
-            y += vY * value;
+        }
+
+        // apply the norm per-anchor and re-adjust the result x/y
+        if (sum > 0.0) {
+          for (let anchor of anchors) {
+            if (!visible(anchor)) {
+              continue;
+            }
+            if (anchor.id in point.weights) {
+              let value = point.weights[anchor.id] / sum; // renorm here
+              let [vX, vY] = math.polarToRect(
+                that,
+                maxPointRadius,
+                anchor.theta,
+                false
+              );
+              x += vX * value;
+              y += vY * value;
+            }
           }
         }
       }

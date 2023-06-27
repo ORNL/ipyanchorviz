@@ -20,9 +20,9 @@ class AnchorViz(widgets.DOMWidget):
     _view_module = Unicode("ipyanchorviz").tag(sync=True)
     _model_module = Unicode("ipyanchorviz").tag(sync=True)
 
-    _view_module_version = Unicode("^0.2.1").tag(sync=True)
+    _view_module_version = Unicode("^0.2.2").tag(sync=True)
     """Version of the front-end module containing widget view."""
-    _model_module_version = Unicode("^0.2.1").tag(sync=True)
+    _model_module_version = Unicode("^0.2.2").tag(sync=True)
     """Version of the front-end module containing widget model."""
 
     # Widget specific property.
