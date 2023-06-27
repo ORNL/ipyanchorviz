@@ -47,6 +47,8 @@ export function updateAnchors(that) {
   let anchorsPrev = that.model.previous("anchors");
   let anchors = getModifiableAnchors(that);
 
+  let newAnchorFound = false;
+
   for (let anchor of anchors) {
     // either the anchor (id) is in the previous list or not
     if (utils.anchorInList(anchor, anchorsPrev)) {
@@ -57,8 +59,10 @@ export function updateAnchors(that) {
     }
     else {
       // add the new anchor
+      newAnchorFound = true;
       console.log("Adding from update " + anchor.id.toString());
       that.addVizAnchor(anchor);
+      updateData(that);
     }
   }
 
@@ -78,7 +82,7 @@ export function updateAnchors(that) {
     //that.localAnchors = anchors;
     updateData(that);
   }
-  else {
+  else if (!newAnchorFound) {
     //that.localAnchors = anchors;
     that.updateDataPointPositionsImmediate();
   }
