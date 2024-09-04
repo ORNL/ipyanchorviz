@@ -1,6 +1,6 @@
 .anchorviz .ring {
     stroke: var(--ringColor, grey);
-    fill: #222222;
+    fill: var(--ringFill, #222222);
 }
 
 .anchorviz .click-overlay {
