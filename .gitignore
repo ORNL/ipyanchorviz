@@ -18,3 +18,5 @@ ipyanchorviz/labextension/
 
 js/.yarn/*
 js/.yarnrc.yml
+
+js/package-lock.json
