@@ -10,8 +10,8 @@ export class AnchorVizModel extends DOMWidgetModel {
         _view_name : 'AnchorVizView',
         _model_module : 'ipyanchorviz',
         _view_module : 'ipyanchorviz',
-        _model_module_version : '0.2.3',
-        _view_module_version : '0.2.3',
+        _model_module_version : '0.3.0',
+        _view_module_version : '0.3.0',
 
         /* bi-directional things */
         anchors: [],
